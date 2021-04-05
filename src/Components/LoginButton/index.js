@@ -7,7 +7,7 @@ function LoginButton({ ...props }) {
 
   return (
     <Button
-      data-testId="loginButton"
+      data-testid="loginButton"
       bg="#1AC0C6"
       size="lg"
       textColor="#fff"
