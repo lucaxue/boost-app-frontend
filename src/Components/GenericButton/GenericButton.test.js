@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import GenericButton from "./index";
 
 const testProps = {
@@ -14,4 +14,11 @@ test("Logout button is rendered", () => {
   const { getByTestId } = render(<GenericButton {...testProps} />);
   const actual = getByTestId("generic button");
   expect(actual).toBeInTheDocument();
+});
+
+test("Logout button is rendered", () => {
+  const { getByTestId } = render(<GenericButton {...testProps} />);
+  const actual = getByTestId("generic button");
+  fireEvent.click(actual);
+  expect(testProps.handleClick).toBeCalled();
 });
