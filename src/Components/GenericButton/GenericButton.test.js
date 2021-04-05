@@ -16,7 +16,7 @@ test("Logout button is rendered", () => {
   expect(actual).toBeInTheDocument();
 });
 
-test("Logout button is rendered", () => {
+test("Test that the GenericButton calls the handleClick function when it's clicked", () => {
   const { getByTestId } = render(<GenericButton {...testProps} />);
   const actual = getByTestId("generic button");
   fireEvent.click(actual);
