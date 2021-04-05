@@ -4,17 +4,18 @@ import {
   GridItem,
   Input,
   HStack,
-} from '@chakra-ui/react';
-import GenericButton from 'Components/GenericButton';
-import { getGroupByName, postGroup, updateUser } from 'Libs/httpRequests';
-import { useUserContext } from 'Libs/userContext';
-import React, { useEffect, useState } from 'react';
+} from "@chakra-ui/react";
+import GenericButton from "Components/GenericButton";
+import { getGroupByName, postGroup, updateUser } from "Libs/httpRequests";
+import { useUserContext } from "Libs/userContext";
+import React, { useEffect, useState } from "react";
+import { actionTypes } from "../../Libs/Reducer/userToPostActionTypes";
 
 function GroupForm({ userToPost, dispatch }) {
   const { dbUser, setDbUser } = useUserContext();
 
-  const [groupName, setGroupName] = useState('');
-  const [groupExists, setGroupExists] = useState('undetermined');
+  const [groupName, setGroupName] = useState("");
+  const [groupExists, setGroupExists] = useState("undetermined");
   const [toUpdate, setToUpdate] = useState(false);
   const [toCreateGroup, setToCreateGroup] = useState(false);
 
@@ -24,12 +25,15 @@ function GroupForm({ userToPost, dispatch }) {
       groupName,
       (group) => {
         if (groupName === group.name) {
-          dispatch({ type: 'SET_PART_OF_GROUP_ID', payload: group.id });
-          setGroupExists('true');
+          dispatch({
+            type: actionTypes.SET_PART_OF_GROUP_ID,
+            payload: group.id,
+          });
+          setGroupExists("true");
         }
       },
       () => {
-        setGroupExists('false');
+        setGroupExists("false");
       }
     );
   }
@@ -48,7 +52,7 @@ function GroupForm({ userToPost, dispatch }) {
     // eslint-disable-next-line
   }, [toUpdate]);
 
-  console.log('this is user id' + dbUser?.id);
+  console.log("this is user id" + dbUser?.id);
 
   useEffect(() => {
     if (toCreateGroup) {
@@ -56,8 +60,14 @@ function GroupForm({ userToPost, dispatch }) {
         process.env.REACT_APP_BACKEND_URL,
         { name: groupName },
         (group) => {
-          dispatch({ type: 'SET_PART_OF_GROUP_ID', payload: group.id });
-          dispatch({ type: 'SET_ADMIN_OF_GROUP_ID', payload: group.id });
+          dispatch({
+            type: actionTypes.SET_PART_OF_GROUP_ID,
+            payload: group.id,
+          });
+          dispatch({
+            type: actionTypes.SET_ADMIN_OF_GROUP_ID,
+            payload: group.id,
+          });
           setToUpdate(true);
         }
       );
@@ -67,7 +77,7 @@ function GroupForm({ userToPost, dispatch }) {
 
   return (
     <>
-      {groupExists === 'undetermined' && (
+      {groupExists === "undetermined" && (
         <>
           <GridItem padding="50px 0">
             <FormControl padding="5px 0" isRequired>
@@ -85,7 +95,7 @@ function GroupForm({ userToPost, dispatch }) {
           <GenericButton text="Submit" handleClick={handleGroupCheck} />
         </>
       )}
-      {groupExists === 'true' && (
+      {groupExists === "true" && (
         <GridItem padding="50px 0">
           <FormControl padding="5px 0" isRequired>
             <FormLabel>
@@ -101,14 +111,14 @@ function GroupForm({ userToPost, dispatch }) {
               <GenericButton
                 text="No"
                 handleClick={() => {
-                  setGroupExists('undetermined');
+                  setGroupExists("undetermined");
                 }}
               />
             </HStack>
           </FormControl>
         </GridItem>
       )}
-      {groupExists === 'false' && (
+      {groupExists === "false" && (
         <GridItem padding="50px 0">
           <FormControl padding="5px 0" isRequired>
             <FormLabel>
@@ -125,7 +135,7 @@ function GroupForm({ userToPost, dispatch }) {
               <GenericButton
                 text="No"
                 handleClick={() => {
-                  setGroupExists('undetermined');
+                  setGroupExists("undetermined");
                 }}
               />
             </HStack>
