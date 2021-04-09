@@ -107,13 +107,13 @@ function EventCard({
                 {description}
               </Text>
               <WrapItem>
-                <Text fontWeight={500} fontSize="md" color="gray.400">
+                <Text data-testid='intensity' fontWeight={500} fontSize="md" color="gray.400">
                   <span className="material-icons">moving</span>{" "}
                   {intensity.toUpperCase()}
                 </Text>
               </WrapItem>
               <WrapItem>
-                <Text fontWeight={500} fontSize="md" color="gray.400">
+                <Text data-testid='exerciseType' fontWeight={500} fontSize="md" color="gray.400">
                   <span className="material-icons">fitness_center</span>
                   {" " + exerciseType.toUpperCase()}
                 </Text>
