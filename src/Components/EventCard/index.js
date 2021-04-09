@@ -79,7 +79,7 @@ function EventCard({
       shortDate={shortDate}
       willAttend={willAttend}
     >
-      <GridItem w="100%">
+      <GridItem data-testid="eventcard" w="100%">
         <Accordion allowToggle minW="100%">
           <AccordionItem textAlign="center">
             <AccordionButton>
@@ -107,13 +107,23 @@ function EventCard({
                 {description}
               </Text>
               <WrapItem>
-                <Text data-testid='intensity' fontWeight={500} fontSize="md" color="gray.400">
+                <Text
+                  data-testid="intensity"
+                  fontWeight={500}
+                  fontSize="md"
+                  color="gray.400"
+                >
                   <span className="material-icons">moving</span>{" "}
                   {intensity.toUpperCase()}
                 </Text>
               </WrapItem>
               <WrapItem>
-                <Text data-testid='exerciseType' fontWeight={500} fontSize="md" color="gray.400">
+                <Text
+                  data-testid="exerciseType"
+                  fontWeight={500}
+                  fontSize="md"
+                  color="gray.400"
+                >
                   <span className="material-icons">fitness_center</span>
                   {" " + exerciseType.toUpperCase()}
                 </Text>
@@ -130,6 +140,7 @@ function EventCard({
               </Text>
               <Box textAlign="right">
                 <GenericButton
+                  data-testid="attending button"
                   text="Attend"
                   handleClick={attendEvent}
                   display={willAttend ? "none" : null}
