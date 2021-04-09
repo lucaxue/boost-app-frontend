@@ -40,10 +40,12 @@ function ProfileCard({
           w="full"
           src="https://images.unsplash.com/photo-1496163668521-39614a16b23f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
           objectFit="cover"
+          
         />
 
         <Flex justify={"center"} mt={-12}>
           <Avatar
+            data-testid="image"
             border="2px solid white"
             size="xl"
             src={picture}
