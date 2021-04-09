@@ -22,3 +22,8 @@ test("Test that the GenericButton calls the handleClick function when it's click
   fireEvent.click(actual);
   expect(testProps.handleClick).toBeCalled();
 });
+
+test("Test that button is rendered with correct text", () => {
+  const { getByTestId } = render(<GenericButton {...testProps} />);
+  expect(getByTestId("generic button")).toHaveTextContent("text");
+});

@@ -103,7 +103,9 @@ function EventCard({
                 <Text>{time}</Text>
               </HStack>
 
-              <Text my={5}>{description}</Text>
+              <Text data-testid="description" my={5}>
+                {description}
+              </Text>
               <WrapItem>
                 <Text fontWeight={500} fontSize="md" color="gray.400">
                   <span className="material-icons">moving</span>{" "}
@@ -117,7 +119,12 @@ function EventCard({
                 </Text>
               </WrapItem>
 
-              <Text fontWeight={500} fontSize="md" color="gray.400">
+              <Text
+                data-testid="address"
+                fontWeight={500}
+                fontSize="md"
+                color="gray.400"
+              >
                 <span className="material-icons">place</span> {address.road},{" "}
                 {address.city}, {address.postcode}
               </Text>
