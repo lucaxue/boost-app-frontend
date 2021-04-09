@@ -16,8 +16,8 @@ function DateAndTimePickers({ dispatch }) {
       <Grid
         border="1px"
         borderColor="gray.200"
-        borderRadius="7px"
-        padding="10px"
+        rounded="lg"
+        p={3}
         placeItems="center"
       >
         <TextField

@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
   Heading,
   Avatar,
   Box,
   Center,
   Text,
-  Link,
   Image,
   Flex,
   // HStack,
@@ -26,7 +25,7 @@ function ProfileCard({
     <Center py={6}>
       <Box
         bg="white"
-        minW={["275px", "445px"]}
+        minW={['275px', '445px']}
         maxW="445px"
         w="full"
         border="0.3px solid lightgrey"
@@ -43,7 +42,7 @@ function ProfileCard({
           
         />
 
-        <Flex justify={"center"} mt={-12}>
+        <Flex justify={'center'} mt={-12}>
           <Avatar
             data-testid="image"
             border="2px solid white"
@@ -56,10 +55,10 @@ function ProfileCard({
               content: '""',
               w: 4,
               h: 4,
-              bg: "green.300",
-              border: "2px solid white",
-              rounded: "full",
-              pos: "absolute",
+              bg: 'green.300',
+              border: '2px solid white',
+              rounded: 'full',
+              pos: 'absolute',
               bottom: 0,
               right: 3,
             }}
@@ -71,19 +70,15 @@ function ProfileCard({
         <Text textAlign="center" fontWeight={600} color="gray.500" mb={4}>
           @{username}
         </Text>
-        <Text textAlign="center" color="gray.700" px={3}>
-          <Heading
-            data-testid="ProfileCardAdminHeading"
-            size="xs"
-            color="gray.400"
-          >
-            {isAdmin ? "ADMIN OF" : "PART OF"}
+        <Box textAlign="center" color="gray.700" px={3}>
+          <Heading size="xs" color="gray.400">
+            {isAdmin ? 'ADMIN OF' : 'PART OF'}
           </Heading>
 
           <Text data-testid="groupName" color="#1ac0c6">
             #{group}
           </Text>
-        </Text>
+        </Box>
 
         {/* <Grid placeItems="center" pt={8}>
           <HStack>

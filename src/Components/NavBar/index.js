@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import NavLink from "../NavLink";
-import { Flex } from "@chakra-ui/react";
+import NavLink from '../NavLink';
+import { Flex } from '@chakra-ui/react';
 
 function NavBar() {
   return (
@@ -10,15 +10,16 @@ function NavBar() {
       bottom={[0, 0, 0, null]}
       top={[null, null, null, 0]}
       textColor="white"
-      flexDirection={["row", "row", "row", "column"]}
+      flexDirection={['row', 'row', 'row', 'column']}
       justifyContent={[
-        "space-between",
-        "space-between",
-        "space-between",
-        "left",
+        'space-between',
+        'space-between',
+        'space-between',
+        'left',
       ]}
-      width={["100%", "100%", "100%", "10%"]}
-      height={["max-content", "max-content", "max-content", "full"]}
+      w={['100%', '100%', '100%', '10%']}
+      h={['max-content', 'max-content', 'max-content', '100vh']}
+      bg="#1AC0C6"
     >
       <NavLink to="/">Profile</NavLink>
       <NavLink to="/CreateEvent">Create Event</NavLink>

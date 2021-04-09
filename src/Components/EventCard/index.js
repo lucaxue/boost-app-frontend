@@ -10,13 +10,13 @@ import {
   HStack,
   Text,
   WrapItem,
-} from "@chakra-ui/react";
-import GenericButton from "Components/GenericButton";
-import { useUserContext } from "Libs/userContext";
-import { DateTime } from "luxon";
-import React, { useEffect, useState } from "react";
-import { getAddress, updateUser } from "../../Libs/httpRequests";
-import EventCardWrapper from "./wrapper";
+} from '@chakra-ui/react';
+import GenericButton from 'Components/GenericButton';
+import { useUserContext } from 'Libs/userContext';
+import { DateTime } from 'luxon';
+import React, { useEffect, useState } from 'react';
+import { getAddress, updateUser } from '../../Libs/httpRequests';
+import EventCardWrapper from './wrapper';
 
 function EventCard({
   name,
@@ -74,12 +74,9 @@ function EventCard({
   }, []);
 
   return (
-    <EventCardWrapper
-      border="2px solid #1ac0c6"
-      shortDate={shortDate}
-      willAttend={willAttend}
-    >
+    <EventCardWrapper shortDate={shortDate} willAttend={willAttend}>
       <GridItem data-testid="eventcard" w="100%">
+
         <Accordion allowToggle minW="100%">
           <AccordionItem textAlign="center">
             <AccordionButton>
@@ -125,7 +122,7 @@ function EventCard({
                   color="gray.400"
                 >
                   <span className="material-icons">fitness_center</span>
-                  {" " + exerciseType.toUpperCase()}
+                  {' ' + exerciseType.toUpperCase()}
                 </Text>
               </WrapItem>
 
@@ -143,7 +140,7 @@ function EventCard({
                   data-testid="attending button"
                   text="Attend"
                   handleClick={attendEvent}
-                  display={willAttend ? "none" : null}
+                  display={willAttend ? 'none' : null}
                 />
               </Box>
             </AccordionPanel>

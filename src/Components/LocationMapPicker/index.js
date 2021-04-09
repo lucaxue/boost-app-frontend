@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 import {
   Button,
@@ -6,10 +6,10 @@ import {
   FormHelperText,
   FormLabel,
   Grid,
-} from "@chakra-ui/react";
-import { MapContainer, TileLayer } from "react-leaflet";
+} from '@chakra-ui/react';
+import { MapContainer, TileLayer } from 'react-leaflet';
 
-import DraggableMarker from "../DraggableMarker";
+import DraggableMarker from '../DraggableMarker';
 
 function LocationMapPicker({ dispatch }) {
   const center = {
@@ -19,18 +19,23 @@ function LocationMapPicker({ dispatch }) {
   const [position, setPosition] = useState(center);
 
   const setLocation = () => {
-    dispatch({ type: "SET_LOCATION", payload: position });
+    dispatch({ type: 'SET_LOCATION', payload: position });
   };
 
   return (
     <FormControl padding="5px 0">
       <FormLabel>Pick your location</FormLabel>
       <Grid
-        border="0.3px solid lightgrey"
-        borderRadius="7px"
-        padding="10px"
+        border="1px"
+        borderColor="gray.200"
+        rounded="lg"
+        p={3}
         placeItems="center"
       >
+        <FormHelperText mb={3}>
+          Press the map to find your location, drag the pin to choose your
+          location.
+        </FormHelperText>
         <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -38,11 +43,7 @@ function LocationMapPicker({ dispatch }) {
           />
           <DraggableMarker position={position} setPosition={setPosition} />
         </MapContainer>
-        <FormHelperText>
-          Press the map to find your location, drag the pin to choose your
-          location.
-        </FormHelperText>
-        <Button bg="#facd60" onClick={setLocation}>
+        <Button mt={3} bg="#facd60" onClick={setLocation}>
           Set Location
         </Button>
       </Grid>
