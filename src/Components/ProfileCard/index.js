@@ -9,9 +9,8 @@ import {
   Flex,
   // HStack,
   // Grid,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
-import LogoutButton from 'Components/LogoutButton';
+} from "@chakra-ui/react";
+import LogoutButton from "Components/LogoutButton";
 
 function ProfileCard({
   firstName,
@@ -19,7 +18,7 @@ function ProfileCard({
   picture,
   username,
   group,
-  hours,
+  //hours,
   isAdmin,
 }) {
   return (
@@ -40,10 +39,12 @@ function ProfileCard({
           w="full"
           src="https://images.unsplash.com/photo-1496163668521-39614a16b23f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
           objectFit="cover"
+          
         />
 
         <Flex justify={'center'} mt={-12}>
           <Avatar
+            data-testid="image"
             border="2px solid white"
             size="xl"
             src={picture}
@@ -63,7 +64,7 @@ function ProfileCard({
             }}
           />
         </Flex>
-        <Heading fontSize="2xl" textAlign="center">
+        <Heading data-testid="fullname" fontSize="2xl" textAlign="center">
           {`${firstName} ${surname}`}
         </Heading>
         <Text textAlign="center" fontWeight={600} color="gray.500" mb={4}>
@@ -74,11 +75,9 @@ function ProfileCard({
             {isAdmin ? 'ADMIN OF' : 'PART OF'}
           </Heading>
 
-          <RouterLink to="/GroupFeed">
-            <Text color="#1ac0c6" fontWeight={500}>
-              #{group}
-            </Text>
-          </RouterLink>
+          <Text data-testid="groupName" color="#1ac0c6">
+            #{group}
+          </Text>
         </Box>
 
         {/* <Grid placeItems="center" pt={8}>

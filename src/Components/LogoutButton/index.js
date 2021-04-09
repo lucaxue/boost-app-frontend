@@ -6,6 +6,7 @@ function LogoutButton({ ...props }) {
   const { logout } = useAuth0();
   return (
     <Button
+      data-testid="logoutButton"
       bg="#1AC0C6"
       size="md"
       textColor="black"
