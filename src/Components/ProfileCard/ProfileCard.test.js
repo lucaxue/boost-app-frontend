@@ -6,7 +6,8 @@ import ProfileCard from "./index";
 const testUser = {
   firstName: "Morgan",
   surname: "Freeman",
-  picture: "https://images.unsplash.com/photo-1577394580379-0b59ce5e1f01?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8bWFuJTIwb3IlMjB3b21hbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+  picture:
+    "https://images.unsplash.com/photo-1577394580379-0b59ce5e1f01?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8bWFuJTIwb3IlMjB3b21hbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
   username: "Morgz",
   group: "Young Mums",
   isAdmin: true,
@@ -48,6 +49,3 @@ describe("When given a user that is an admin", () => {
     expect(actual).toBeInTheDocument();
   });
 });
-
-
-//expect(getByTestId('parent')).toContainHTML('<span data-testid="child"></span>')
