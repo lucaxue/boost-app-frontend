@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormControl, FormLabel, Select } from '@chakra-ui/react';
 
-function IntensityDropdown({ dispatch }) {
+function IntensityDropdown({ dispatch, intensity }) {
   const setIntensity = (e) => {
     dispatch({ type: 'SET_INTENSITY', payload: e.target.value });
   };
@@ -9,7 +9,11 @@ function IntensityDropdown({ dispatch }) {
   return (
     <FormControl padding="5px 0">
       <FormLabel>Intensity</FormLabel>
-      <Select placeholder="Select options" onChange={setIntensity}>
+      <Select
+        value={intensity}
+        placeholder="Select options"
+        onChange={setIntensity}
+      >
         <option value="Easy">Easy</option>
         <option value="Intermediate">Intermediate</option>
         <option value="Hard">Hard</option>

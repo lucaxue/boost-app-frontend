@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './datepicker.css';
 import { FormControl, FormLabel } from '@chakra-ui/react';
 
-function Picker({ dispatch, datetime }) {
+function DateTimePicker({ dispatch, datetime }) {
   function setDateAndTime(date) {
     dispatch({
       type: 'SET_DATE_AND_TIME',
@@ -29,4 +29,4 @@ function Picker({ dispatch, datetime }) {
   );
 }
 
-export default Picker;
+export default DateTimePicker;
