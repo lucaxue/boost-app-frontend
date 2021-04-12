@@ -15,11 +15,12 @@
   height: 2.5rem;
   border-radius: 0.25rem;
   border: 1px solid;
-  border-color: hsl(0, 0%, 80%);
+  border-color: #e2e8f0;
+  transition: 0.2s;
 }
 
 .react-datepicker__input-container:hover {
-  border-color: hsl(0, 0%, 70%);
+  border-color: #d0d4e4;
 }
 .react-datepicker__input-container:focus-within {
   z-index: 1;

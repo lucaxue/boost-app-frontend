@@ -31,6 +31,10 @@ function LocationMapPicker({ dispatch }) {
         rounded="lg"
         p={3}
         placeItems="center"
+        _hover={{
+          borderColor: 'gray.300',
+        }}
+        transition="0.2s"
       >
         <FormHelperText mb={3}>
           Press the map to find your location, drag the pin to choose your
