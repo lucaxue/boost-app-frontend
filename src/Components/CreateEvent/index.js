@@ -20,6 +20,7 @@ import EventNameInput from '../EventNameInput';
 import ExerciseDropdown from '../ExerciseDropdown';
 import IntensityDropdown from '../IntensityDropdown';
 import LocationMapPicker from '../LocationMapPicker';
+import Picker from '../LocationMapPicker/Picker.js'
 
 const initialEvent = {
   name: '',
@@ -110,6 +111,7 @@ function CreateEvent() {
           <ExerciseDropdown dispatch={dispatch} />
           <DateAndTimePickers dispatch={dispatch} />
           <LocationMapPicker dispatch={dispatch} />
+          <Picker />
         </GridItem>
 
         <Popover>
