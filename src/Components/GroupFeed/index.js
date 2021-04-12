@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Heading, Grid, GridItem, Center, Box } from '@chakra-ui/react';
-import EventCard from '../EventCard/index';
-import { getEventsByGroupId } from '../../Libs/httpRequests';
-import { useUserContext } from 'Libs/userContext';
-import { DateTime } from 'luxon';
+import React, { useEffect, useState } from "react";
+import { Heading, Grid, GridItem, Center, Box } from "@chakra-ui/react";
+import EventCard from "../EventCard/index";
+import { getEventsByGroupId } from "../../Libs/httpRequests";
+import { useUserContext } from "Libs/userContext";
+import { DateTime } from "luxon";
 
 function GroupFeed() {
   const [groupEvents, setGroupEvents] = useState([]);
   const [eventsWillNotAttend, setEventsWillNotAttend] = useState([]);
   const { dbUser, eventsWillAttend } = useUserContext();
-
+  console.log(groupEvents);
   useEffect(() => {
     getEventsByGroupId(
       process.env.REACT_APP_BACKEND_URL,

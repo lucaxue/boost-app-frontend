@@ -10,57 +10,58 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
-} from '@chakra-ui/react';
-import { useUserContext } from 'Libs/userContext';
-import React, { useEffect, useReducer, useState } from 'react';
-import { postEvent } from '../../Libs/httpRequests';
-import DateAndTimePickers from '../DateAndTimePicker';
-import EventDescriptionInput from '../EventDescriptionInput';
-import EventNameInput from '../EventNameInput';
-import ExerciseDropdown from '../ExerciseDropdown';
-import IntensityDropdown from '../IntensityDropdown';
-import LocationMapPicker from '../LocationMapPicker';
-import Picker from '../LocationMapPicker/Picker.js'
+} from "@chakra-ui/react";
+import { useUserContext } from "Libs/userContext";
+import React, { useEffect, useReducer, useState } from "react";
+import { postEvent } from "../../Libs/httpRequests";
+import DateAndTimePickers from "../DateAndTimePicker";
+import EventDescriptionInput from "../EventDescriptionInput";
+import EventNameInput from "../EventNameInput";
+import ExerciseDropdown from "../ExerciseDropdown";
+import IntensityDropdown from "../IntensityDropdown";
+import LocationMapPicker from "../LocationMapPicker";
+import Picker from "../DateAndTimePicker/Picker.js";
+import { DateTime } from "luxon";
 
 const initialEvent = {
-  name: '',
-  description: '',
-  exerciseType: '',
+  name: "",
+  description: "",
+  exerciseType: "",
   longitude: 0,
   latitude: 0,
-  time: '0',
-  intensity: '',
+  time: DateTime.now().toString().slice(0, -10),
+  intensity: "",
   groupId: 2,
 };
 
 function reducer(event, action) {
   switch (action.type) {
-    case 'SET_EXERCISE':
+    case "SET_EXERCISE":
       return { ...event, exerciseType: action.payload };
-    case 'SET_DATE_AND_TIME':
+    case "SET_DATE_AND_TIME":
       return { ...event, time: action.payload };
-    case 'SET_LOCATION':
+    case "SET_LOCATION":
       return {
         ...event,
         longitude: action.payload.lng,
         latitude: action.payload.lat,
       };
-    case 'SET_INTENSITY':
+    case "SET_INTENSITY":
       return {
         ...event,
         intensity: action.payload,
       };
-    case 'SET_EVENT_NAME':
+    case "SET_EVENT_NAME":
       return {
         ...event,
         name: action.payload,
       };
-    case 'SET_EVENT_DESCRIPTION':
+    case "SET_EVENT_DESCRIPTION":
       return {
         ...event,
         description: action.payload,
       };
-    case 'SET_GROUP_ID':
+    case "SET_GROUP_ID":
       return {
         ...event,
         groupId: action.payload,
@@ -75,10 +76,10 @@ function CreateEvent() {
   const [event, dispatch] = useReducer(reducer, initialEvent);
   const [postedEvent, setPostedEvent] = useState(initialEvent);
   const [toPost, setToPost] = useState(false);
-
+  console.log(event);
   function handlePost() {
     // @ts-ignore
-    dispatch({ type: 'SET_GROUP_ID', payload: dbUser?.partOfGroupId });
+    dispatch({ type: "SET_GROUP_ID", payload: dbUser?.partOfGroupId });
     setToPost(true);
   }
 
@@ -97,7 +98,7 @@ function CreateEvent() {
         placeSelf="center"
         rounded="md"
         border="0.3px solid lightgrey"
-        minW={['300px', '445px']}
+        minW={["300px", "445px"]}
         maxW="445"
         w="full"
         placeItems="center"
@@ -109,9 +110,9 @@ function CreateEvent() {
           <EventDescriptionInput dispatch={dispatch} />
           <IntensityDropdown dispatch={dispatch} />
           <ExerciseDropdown dispatch={dispatch} />
-          <DateAndTimePickers dispatch={dispatch} />
+          <Picker dispatch={dispatch} datetime={event.time} />
+          {/* <DateAndTimePickers dispatch={dispatch} /> */}
           <LocationMapPicker dispatch={dispatch} />
-          <Picker />
         </GridItem>
 
         <Popover>
