@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Heading, Grid, GridItem, Text, Center, Box } from "@chakra-ui/react";
+import { Heading, Grid, GridItem, Text, Center, Box, Button } from "@chakra-ui/react";
 import EventCard from "../EventCard/index";
 import { getEventsByGroupId } from "../../Libs/httpRequests";
 import { useUserContext } from "Libs/userContext";
 import { DateTime } from "luxon";
+import { Link } from "react-router-dom";
+
 
 function GroupFeed() {
   const [groupEvents, setGroupEvents] = useState([]);
@@ -39,29 +41,73 @@ function GroupFeed() {
         w="full"
       >
         <Heading>Group Feed</Heading>
-        {eventsWillAttend.length !== 0 && eventsWillNotAttend.length !== 0 ? (
+        {eventsWillAttend.length!==0 || eventsWillNotAttend.length !== 0 ? (
           <>
             <GridItem py={5} w="full">
               <Heading ml={2} size="md" color="black">
                 Attending Events
               </Heading>
-              {eventsWillAttend.map((event) => (
+              {eventsWillAttend.length!==0 ? eventsWillAttend.map((event) => (
                 <EventCard {...event} key={event.id} willAttend={true} />
-              ))}
+                
+              )):<Grid
+              placeItems="center"
+              p={5}
+              bg="white"
+              minW={['275px', '445px']}
+              maxW="445px"
+              w="full"
+              border="0.3px solid lightgrey"
+              boxShadow="md"
+              rounded="md"
+              overflow="hidden"
+              m={1}
+            >
+              <Text>You are attending no events.</Text>
+            </Grid>}
             </GridItem>
             <GridItem py={5} w="full">
               <Heading ml={2} size="md" color="black">
                 Other Events
               </Heading>
               <Box w="full">
-                {eventsWillNotAttend.map((event) => (
+                {eventsWillNotAttend.length!==0 ? eventsWillNotAttend.map((event) => (
                   <EventCard {...event} key={event.id} willAttend={false} />
-                ))}
+                )): <Grid
+                placeItems="center"
+                p={5}
+                bg="white"
+                minW={['275px', '445px']}
+                maxW="445px"
+                w="full"
+                border="0.3px solid lightgrey"
+                boxShadow="md"
+                rounded="md"
+                overflow="hidden"
+                m={1}
+              >
+                <Text>No other events</Text>
+              </Grid>}
               </Box>
             </GridItem>
           </>
         ) : (
-          <Text>You have no events</Text>
+          <Grid
+          placeItems="center"
+          p={5}
+          bg="white"
+          minW={['275px', '445px']}
+          maxW="445px"
+          w="full"
+          border="0.3px solid lightgrey"
+          boxShadow="md"
+          rounded="md"
+          overflow="hidden"
+          mx={1}
+        >
+          <Heading size="sm" mb={5}>You have no events.</Heading> 
+            <Link to="/CreateEvent"><Button>Add a new event</Button></Link>
+          </Grid>
         )}
       </Grid>
     </Center>
