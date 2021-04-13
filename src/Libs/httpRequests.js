@@ -1,10 +1,10 @@
-export async function getUserByUsername(URL, username, onSuccess) {
+export async function getUserByUsername(URL, username, onSuccess, onFail) {
   try {
     const res = await fetch(`${URL}/users?username=${username}`);
     const data = await res.json();
     onSuccess(data);
-  } catch (error) {
-    console.log(error);
+  } catch {
+    onFail();
   }
 }
 

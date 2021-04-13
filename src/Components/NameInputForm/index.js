@@ -2,7 +2,7 @@ import { FormControl, FormLabel, GridItem, Input } from '@chakra-ui/react';
 import GenericButton from 'Components/GenericButton';
 import React from 'react';
 
-function NameInputForm({ handleFirstName, handleSurname, handlePost }) {
+function NameInputForm({ handleFirstName, handleSurname, submitName }) {
   return (
     <>
       <GridItem padding="50px 0">
@@ -15,7 +15,7 @@ function NameInputForm({ handleFirstName, handleSurname, handlePost }) {
           <Input placeholder="Surname" onChange={handleSurname} />
         </FormControl>
       </GridItem>
-      <GenericButton text="Submit" handleClick={handlePost} />
+      <GenericButton text="Submit" handleClick={submitName} />
     </>
   );
 }

@@ -30,6 +30,7 @@ const initialUserToDisplay = {
   group: '',
   hours: 0,
   isAdmin: false,
+  isReady: 'loading',
 };
 
 function reducer(userToDisplay, action) {
@@ -50,6 +51,10 @@ function reducer(userToDisplay, action) {
       return { ...userToDisplay, hours: action.payload };
     case 'SET_IS_ADMIN':
       return { ...userToDisplay, isAdmin: action.payload };
+    case 'SET_IS_READY':
+      return { ...userToDisplay, isReady: action.payload };
+    case 'RESET':
+      return initialUserToDisplay;
     default:
       return userToDisplay;
   }
@@ -81,6 +86,11 @@ export function UserContextProvider({ children }) {
       auth0User?.nickname,
       (data) => {
         setDbUser(data[0]);
+      },
+      () => {
+        console.log("you're a new user!");
+        // @ts-ignore
+        dispatch({ type: 'SET_IS_READY', payload: 'new user' });
       }
     );
     // eslint-disable-next-line
@@ -108,6 +118,8 @@ export function UserContextProvider({ children }) {
       dispatch({ type: 'SET_PICTURE', payload: auth0User?.picture });
       // @ts-ignore
       dispatch({ type: 'SET_HOURS', payload: dbUser.hours });
+      // @ts-ignore
+      dispatch({ type: 'SET_IS_READY', payload: 'ready' });
 
       getGroupById(
         process.env.REACT_APP_BACKEND_URL,
@@ -130,7 +142,7 @@ export function UserContextProvider({ children }) {
   useEffect(() => {
     if (eventsWillAttend.length !== 0) {
       const futureEvents = eventsWillAttend.filter(
-        (event) => DateTime.fromISO(event.time) > DateTime.now()
+        (event) => DateTime.fromISO(event?.time) > DateTime.now()
       );
       setNextEvent(
         futureEvents.reduce(
