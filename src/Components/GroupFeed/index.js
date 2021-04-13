@@ -7,7 +7,6 @@ import {
   Center,
   Box,
   Button,
-  Flex,
 } from '@chakra-ui/react';
 import EventCard from '../EventCard/index';
 import { getEventsByGroupId } from '../../Libs/httpRequests';
@@ -18,7 +17,7 @@ import { Link } from 'react-router-dom';
 function GroupFeed() {
   const [groupEvents, setGroupEvents] = useState([]);
   const [eventsWillNotAttend, setEventsWillNotAttend] = useState([]);
-  const { dbUser, eventsWillAttend } = useUserContext();
+  const { dbUser, eventsWillAttend, userToDisplay } = useUserContext();
   console.log(groupEvents);
   useEffect(() => {
     getEventsByGroupId(
@@ -40,8 +39,9 @@ function GroupFeed() {
 
   return (
     <Center>
-      <Grid mt="15px" placeItems="center" minH="90vh" mb="100px" mx={1}>
+      <Grid mt="15px" placeItems="center"   mb="100px" mx={1}>
         <Heading>Group Feed</Heading>
+        <Heading size="md" my={1} color="gray.400">{userToDisplay.group}</Heading>
         {eventsWillAttend.length !== 0 || eventsWillNotAttend.length !== 0 ? (
           <>
             <GridItem py={5} w="full">
