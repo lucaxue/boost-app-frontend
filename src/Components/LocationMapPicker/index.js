@@ -11,12 +11,8 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 
 import DraggableMarker from '../DraggableMarker';
 
-function LocationMapPicker({ dispatch }) {
-  const center = {
-    lat: 52.4754,
-    lng: -1.8845,
-  };
-  const [position, setPosition] = useState(center);
+function LocationMapPicker({ dispatch, location }) {
+  const [position, setPosition] = useState(location);
 
   const setLocation = () => {
     dispatch({ type: 'SET_LOCATION', payload: position });
@@ -31,12 +27,16 @@ function LocationMapPicker({ dispatch }) {
         rounded="lg"
         p={3}
         placeItems="center"
+        _hover={{
+          borderColor: 'gray.300',
+        }}
+        transition="0.2s"
       >
         <FormHelperText mb={3}>
           Press the map to find your location, drag the pin to choose your
           location.
         </FormHelperText>
-        <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
+        <MapContainer center={location} zoom={13} scrollWheelZoom={false}>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -18,6 +18,7 @@ import React, { useEffect, useState } from 'react';
 import { getAddress, updateUser } from '../../Libs/httpRequests';
 import EventCardWrapper from './wrapper';
 
+
 function EventCard({
   name,
   time: dateTime,

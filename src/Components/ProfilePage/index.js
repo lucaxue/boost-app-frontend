@@ -11,15 +11,16 @@ function ProfilePage() {
   return (
     <Center>
       <Grid placeItems="center" minH="90vh" mb="100px">
-        {userToDisplay.id && userToDisplay.group ? (
-          <ProfileCard {...userToDisplay} />
-        ) : (
-          <NewUserForm />
+        {userToDisplay.isReady === 'loading' && <p>Loading...</p>}
+        {userToDisplay.isReady === 'new user' && <NewUserForm />}
+        {userToDisplay.isReady === 'ready' && (
+          <>
+            <ProfileCard {...userToDisplay} />
+            <GridItem w="full" maxW="445">
+              {nextEvent && <EventCard {...nextEvent} willAttend={true} />}
+            </GridItem>
+          </>
         )}
-
-        <GridItem w="full" maxW="445">
-          {nextEvent && <EventCard {...nextEvent} willAttend={true} />}
-        </GridItem>
       </Grid>
     </Center>
   );

@@ -30,6 +30,7 @@ const initialUserToDisplay = {
   group: '',
   hours: 0,
   isAdmin: false,
+  isReady: 'loading',
 };
 
 function reducer(userToDisplay, action) {
@@ -50,6 +51,10 @@ function reducer(userToDisplay, action) {
       return { ...userToDisplay, hours: action.payload };
     case 'SET_IS_ADMIN':
       return { ...userToDisplay, isAdmin: action.payload };
+    case 'SET_IS_READY':
+      return { ...userToDisplay, isReady: action.payload };
+    case 'RESET':
+      return initialUserToDisplay;
     default:
       return userToDisplay;
   }
@@ -81,6 +86,11 @@ export function UserContextProvider({ children }) {
       auth0User?.nickname,
       (data) => {
         setDbUser(data[0]);
+      },
+      () => {
+        console.log("you're a new user!");
+        // @ts-ignore
+        dispatch({ type: 'SET_IS_READY', payload: 'new user' });
       }
     );
     // eslint-disable-next-line
@@ -89,7 +99,7 @@ export function UserContextProvider({ children }) {
   //if dbUser exists,
   //set the rest of the details
   useEffect(() => {
-    if (dbUser) {
+    if (dbUser.id !== 0) {
       // @ts-ignore
       dispatch({ type: 'SET_FIRST_NAME', payload: dbUser.firstName });
       // @ts-ignore
@@ -108,6 +118,8 @@ export function UserContextProvider({ children }) {
       dispatch({ type: 'SET_PICTURE', payload: auth0User?.picture });
       // @ts-ignore
       dispatch({ type: 'SET_HOURS', payload: dbUser.hours });
+      // @ts-ignore
+      dispatch({ type: 'SET_IS_READY', payload: 'ready' });
 
       getGroupById(
         process.env.REACT_APP_BACKEND_URL,
@@ -121,7 +133,13 @@ export function UserContextProvider({ children }) {
       getManyEventsByIds(
         process.env.REACT_APP_BACKEND_URL,
         dbUser.eventsIds,
-        setEventsWillAttend
+        (events) => {
+          setEventsWillAttend(
+            events.filter(
+              (event) => DateTime.fromISO(event.time) > DateTime.now()
+            )
+          );
+        }
       );
     }
     // eslint-disable-next-line
@@ -129,13 +147,10 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     if (eventsWillAttend.length !== 0) {
-      const futureEvents = eventsWillAttend.filter(
-        (event) => DateTime.fromISO(event.time) > DateTime.now()
-      );
       setNextEvent(
-        futureEvents.reduce(
+        eventsWillAttend.reduce(
           (acc, cur) => (new Date(cur.time) < new Date(acc.time) ? cur : acc),
-          futureEvents[0]
+          eventsWillAttend[0]
         )
       );
     }
