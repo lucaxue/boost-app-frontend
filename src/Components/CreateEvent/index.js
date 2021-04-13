@@ -104,6 +104,7 @@ function CreateEvent() {
       <Heading>Create Event</Heading>
 
       <Grid
+        my={5}
         placeSelf="center"
         rounded="md"
         border="0.3px solid lightgrey"
@@ -133,8 +134,9 @@ function CreateEvent() {
         </GridItem>
 
         <Button
+          w="full"
           isLoading={toPost}
-          mt={5}
+          my={5}
           bg="#facd60"
           onClick={() => {
             handlePost();

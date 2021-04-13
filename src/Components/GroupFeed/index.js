@@ -13,6 +13,7 @@ import { getEventsByGroupId } from '../../Libs/httpRequests';
 import { useUserContext } from 'Libs/userContext';
 import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
+import Card from 'Components/Card';
 
 function GroupFeed() {
   const [groupEvents, setGroupEvents] = useState([]);
@@ -39,7 +40,14 @@ function GroupFeed() {
 
   return (
     <Center>
-      <Grid mt="15px" placeItems="center" mb="100px" mx={1}>
+      <Grid
+        w="full"
+        maxW="445px"
+        mt="15px"
+        placeItems="center"
+        mb="100px"
+        mx={1}
+      >
         <Heading>Group Feed</Heading>
         <Heading size="md" my={1} color="gray.400">
           {userToDisplay.group}
@@ -55,22 +63,9 @@ function GroupFeed() {
                   <EventCard {...event} key={event.id} willAttend={true} />
                 ))
               ) : (
-                <Center>
-                  <Box
-                    placeItems="center"
-                    p={5}
-                    bg="white"
-                    minW={['300px', '445px']}
-                    w="full"
-                    border="0.3px solid lightgrey"
-                    boxShadow="md"
-                    rounded="md"
-                    overflow="hidden"
-                    mx={1}
-                  >
-                    <Text>You are attending no events.</Text>
-                  </Box>
-                </Center>
+                <Card p={5}>
+                  <Text>You are attending no events.</Text>
+                </Card>
               )}
             </GridItem>
             <GridItem py={5} w="full">
@@ -83,47 +78,24 @@ function GroupFeed() {
                     <EventCard {...event} key={event.id} willAttend={false} />
                   ))
                 ) : (
-                  <Center>
-                    <Box
-                      placeItems="center"
-                      p={5}
-                      bg="white"
-                      minW={['300px', '445px']}
-                      w="full"
-                      border="0.3px solid lightgrey"
-                      boxShadow="md"
-                      rounded="md"
-                      overflow="hidden"
-                      mx={1}
-                    >
-                      <Text>No other events</Text>
-                    </Box>
-                  </Center>
+                  <Card p={5}>
+                    <Text>No other events</Text>
+                  </Card>
                 )}
               </Box>
             </GridItem>
           </>
         ) : (
-          <Grid
-            placeItems="center"
-            p={5}
-            bg="white"
-            minW={['275px', '445px']}
-            maxW="445px"
-            w="full"
-            border="0.3px solid lightgrey"
-            boxShadow="md"
-            rounded="md"
-            overflow="hidden"
-            mx={1}
-          >
-            <Heading size="sm" mb={5}>
+          <Card p={5}>
+            <Heading textAlign="center" size="sm" mb={5}>
               You have no events.
             </Heading>
-            <Link to="/CreateEvent">
-              <Button>Add a new event</Button>
-            </Link>
-          </Grid>
+            <Box textAlign="center">
+              <Link to="/CreateEvent">
+                <Button>Add a new event</Button>
+              </Link>
+            </Box>
+          </Card>
         )}
       </Grid>
     </Center>

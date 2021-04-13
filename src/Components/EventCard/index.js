@@ -11,13 +11,12 @@ import {
   Text,
   WrapItem,
 } from '@chakra-ui/react';
+import Card from 'Components/Card';
 import GenericButton from 'Components/GenericButton';
 import { useUserContext } from 'Libs/userContext';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
 import { getAddress, updateUser } from '../../Libs/httpRequests';
-import EventCardWrapper from './wrapper';
-
 
 function EventCard({
   name,
@@ -75,80 +74,83 @@ function EventCard({
   }, []);
 
   return (
-    <EventCardWrapper shortDate={shortDate} willAttend={willAttend}>
-      <GridItem data-testid="eventcard" w="100%">
+    <Card stripColor={willAttend ? '#facd60' : 'gray.100'} p={6}>
+      <HStack>
+        <Heading fontSize="2xl">{shortDate}</Heading>
 
-        <Accordion allowToggle minW="100%">
-          <AccordionItem textAlign="center">
-            <AccordionButton>
-              <Box flex="1">
-                <Heading size="md" textAlign="center">
-                  {name}
-                </Heading>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
+        <GridItem data-testid="eventcard" w="full">
+          <Accordion allowToggle minW="full">
+            <AccordionItem textAlign="center">
+              <AccordionButton>
+                <Box flex="1">
+                  <Heading size="md" textAlign="center">
+                    {name}
+                  </Heading>
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
 
-            <AccordionPanel textAlign="left" pb={4}>
-              <HStack>
-                <Heading size="xs" color="#1ac0c6">
-                  DATE
-                </Heading>
-                <Text>{date}</Text>
-                <Heading size="xs" color="#1ac0c6">
-                  AT
-                </Heading>
-                <Text>{time}</Text>
-              </HStack>
+              <AccordionPanel textAlign="left" pb={4}>
+                <HStack>
+                  <Heading size="xs" color="#1ac0c6">
+                    DATE
+                  </Heading>
+                  <Text>{date}</Text>
+                  <Heading size="xs" color="#1ac0c6">
+                    AT
+                  </Heading>
+                  <Text>{time}</Text>
+                </HStack>
 
-              <Text data-testid="description" my={5}>
-                {description}
-              </Text>
-              <WrapItem>
+                <Text data-testid="description" my={5}>
+                  {description}
+                </Text>
+                <WrapItem>
+                  <Text
+                    data-testid="intensity"
+                    fontWeight={500}
+                    fontSize="md"
+                    color="gray.400"
+                  >
+                    <span className="material-icons">moving</span>{' '}
+                    {intensity.toUpperCase()}
+                  </Text>
+                </WrapItem>
+                <WrapItem>
+                  <Text
+                    data-testid="exerciseType"
+                    fontWeight={500}
+                    fontSize="md"
+                    color="gray.400"
+                  >
+                    <span className="material-icons">fitness_center</span>
+                    {' ' + exerciseType.toUpperCase()}
+                  </Text>
+                </WrapItem>
+
                 <Text
-                  data-testid="intensity"
+                  data-testid="address"
                   fontWeight={500}
                   fontSize="md"
                   color="gray.400"
                 >
-                  <span className="material-icons">moving</span>{" "}
-                  {intensity.toUpperCase()}
+                  <span className="material-icons">place</span> {address.road},{' '}
+                  {address.city}, {address.postcode}
                 </Text>
-              </WrapItem>
-              <WrapItem>
-                <Text
-                  data-testid="exerciseType"
-                  fontWeight={500}
-                  fontSize="md"
-                  color="gray.400"
-                >
-                  <span className="material-icons">fitness_center</span>
-                  {' ' + exerciseType.toUpperCase()}
-                </Text>
-              </WrapItem>
-
-              <Text
-                data-testid="address"
-                fontWeight={500}
-                fontSize="md"
-                color="gray.400"
-              >
-                <span className="material-icons">place</span> {address.road},{" "}
-                {address.city}, {address.postcode}
-              </Text>
-              <Box textAlign="right">
-                <GenericButton
-                  data-testid="attending button"
-                  text="Attend"
-                  handleClick={attendEvent}
-                  display={willAttend ? 'none' : null}
-                />
-              </Box>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-      </GridItem>
-    </EventCardWrapper>
+                <Box textAlign="right">
+                  <GenericButton
+                    data-testid="attending button"
+                    text="Attend"
+                    handleClick={attendEvent}
+                    display={willAttend ? 'none' : null}
+                  />
+                </Box>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+        </GridItem>
+      </HStack>
+    </Card>
   );
 }
 export default EventCard;

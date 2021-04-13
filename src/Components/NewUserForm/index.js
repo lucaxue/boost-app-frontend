@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from 'react';
-import { Grid, Heading } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 import { postUser } from 'Libs/httpRequests';
 import { useUserContext } from '../../Libs/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -10,6 +10,7 @@ import {
   reducer,
 } from '../../Libs/Reducer/userToPostReducer';
 import { actionTypes } from '../../Libs/Reducer/userToPostActionTypes';
+import Card from 'Components/Card';
 
 function NewUserForm() {
   const { user: auth0User } = useAuth0();
@@ -43,18 +44,7 @@ function NewUserForm() {
   }, [toPost]);
 
   return (
-    <Grid
-      bg="white"
-      minW={['275px', '445px']}
-      maxW="445px"
-      w="full"
-      border="0.3px solid lightgrey"
-      boxShadow="xl"
-      rounded="md"
-      overflow="hidden"
-      p={10}
-      mx={1}
-    >
+    <Card p={10} maxW="445px">
       <Heading size="xl">Welcome</Heading>
       <Heading size="sm" color="gray.300">
         Please enter some details to register.
@@ -68,7 +58,7 @@ function NewUserForm() {
           handleSurname={handleSurname}
         />
       )}
-    </Grid>
+    </Card>
   );
 }
 export default NewUserForm;
