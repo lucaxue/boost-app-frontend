@@ -155,11 +155,12 @@ function CreateEvent() {
 
           <ModalFooter>
             <Link to="/GroupFeed">
-              <Button colorScheme="blue" mr={3}>
+              <Button colorScheme="blue" mr={3} fontSize={[12, 16]}>
                 Go to Feed Page
               </Button>
             </Link>
             <Button
+              fontSize={[12, 16]}
               variant="ghost"
               onClick={() => {
                 // @ts-ignore

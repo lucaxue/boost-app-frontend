@@ -10,7 +10,7 @@ function EventCardWrapper({ shortDate, children, willAttend, ...props }) {
         boxShadow="md"
         rounded="md"
         p={6}
-        overflow={'hidden'}
+        overflow='hidden'
         mx={1}
         border="0.3px solid lightgrey"
         bg="white"
