@@ -88,7 +88,6 @@ export function UserContextProvider({ children }) {
         setDbUser(data[0]);
       },
       () => {
-        console.log("you're a new user!");
         // @ts-ignore
         dispatch({ type: 'SET_IS_READY', payload: 'new user' });
       }

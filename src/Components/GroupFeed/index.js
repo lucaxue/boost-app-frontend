@@ -18,7 +18,7 @@ function GroupFeed() {
   const [groupEvents, setGroupEvents] = useState([]);
   const [eventsWillNotAttend, setEventsWillNotAttend] = useState([]);
   const { dbUser, eventsWillAttend, userToDisplay } = useUserContext();
-  console.log(groupEvents);
+
   useEffect(() => {
     getEventsByGroupId(
       process.env.REACT_APP_BACKEND_URL,
@@ -39,9 +39,11 @@ function GroupFeed() {
 
   return (
     <Center>
-      <Grid mt="15px" placeItems="center"   mb="100px" mx={1}>
+      <Grid mt="15px" placeItems="center" mb="100px" mx={1}>
         <Heading>Group Feed</Heading>
-        <Heading size="md" my={1} color="gray.400">{userToDisplay.group}</Heading>
+        <Heading size="md" my={1} color="gray.400">
+          {userToDisplay.group}
+        </Heading>
         {eventsWillAttend.length !== 0 || eventsWillNotAttend.length !== 0 ? (
           <>
             <GridItem py={5} w="full">
