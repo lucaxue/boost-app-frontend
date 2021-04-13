@@ -99,7 +99,7 @@ export function UserContextProvider({ children }) {
   //if dbUser exists,
   //set the rest of the details
   useEffect(() => {
-    if (dbUser) {
+    if (dbUser.id !== 0) {
       // @ts-ignore
       dispatch({ type: 'SET_FIRST_NAME', payload: dbUser.firstName });
       // @ts-ignore
@@ -133,7 +133,13 @@ export function UserContextProvider({ children }) {
       getManyEventsByIds(
         process.env.REACT_APP_BACKEND_URL,
         dbUser.eventsIds,
-        setEventsWillAttend
+        (events) => {
+          setEventsWillAttend(
+            events.filter(
+              (event) => DateTime.fromISO(event.time) > DateTime.now()
+            )
+          );
+        }
       );
     }
     // eslint-disable-next-line
@@ -141,13 +147,10 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     if (eventsWillAttend.length !== 0) {
-      const futureEvents = eventsWillAttend.filter(
-        (event) => DateTime.fromISO(event?.time) > DateTime.now()
-      );
       setNextEvent(
-        futureEvents.reduce(
+        eventsWillAttend.reduce(
           (acc, cur) => (new Date(cur.time) < new Date(acc.time) ? cur : acc),
-          futureEvents[0]
+          eventsWillAttend[0]
         )
       );
     }
