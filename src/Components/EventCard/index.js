@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Button,
   GridItem,
   Heading,
   HStack,
@@ -12,7 +13,6 @@ import {
   WrapItem,
 } from '@chakra-ui/react';
 import Card from 'Components/Card';
-import GenericButton from 'Components/GenericButton';
 import { useUserContext } from 'Libs/userContext';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
@@ -74,7 +74,7 @@ function EventCard({
   }, []);
 
   return (
-    <Card stripColor={willAttend ? '#facd60' : 'gray.100'} p={6}>
+    <Card stripColor={willAttend ? 'boostyellow.300' : 'gray.100'} p={6}>
       <HStack>
         <Heading fontSize="2xl">{shortDate}</Heading>
 
@@ -92,11 +92,11 @@ function EventCard({
 
               <AccordionPanel textAlign="left" pb={4}>
                 <HStack>
-                  <Heading size="xs" color="#1ac0c6">
+                  <Heading size="xs" color="boostblue.500">
                     DATE
                   </Heading>
                   <Text>{date}</Text>
-                  <Heading size="xs" color="#1ac0c6">
+                  <Heading size="xs" color="boostblue.500">
                     AT
                   </Heading>
                   <Text>{time}</Text>
@@ -138,12 +138,13 @@ function EventCard({
                   {address.city}, {address.postcode}
                 </Text>
                 <Box textAlign="right">
-                  <GenericButton
-                    data-testid="attending button"
-                    text="Attend"
-                    handleClick={attendEvent}
+                  <Button
+                    colorScheme="boostblue"
+                    onClick={attendEvent}
                     display={willAttend ? 'none' : null}
-                  />
+                  >
+                    Attend
+                  </Button>
                 </Box>
               </AccordionPanel>
             </AccordionItem>

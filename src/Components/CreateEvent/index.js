@@ -12,63 +12,63 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-} from '@chakra-ui/react';
-import { useUserContext } from 'Libs/userContext';
-import React, { useEffect, useReducer, useState } from 'react';
-import { postEvent } from '../../Libs/httpRequests';
-import EventDescriptionInput from '../EventDescriptionInput';
-import EventNameInput from '../EventNameInput';
-import ExerciseDropdown from '../ExerciseDropdown';
-import IntensityDropdown from '../IntensityDropdown';
-import LocationMapPicker from '../LocationMapPicker';
-import DateTimePicker from '../DateTimePicker';
-import { DateTime } from 'luxon';
-import { Link } from 'react-router-dom';
+} from "@chakra-ui/react";
+import { useUserContext } from "Libs/userContext";
+import React, { useEffect, useReducer, useState } from "react";
+import { postEvent } from "../../Libs/httpRequests";
+import EventDescriptionInput from "../EventDescriptionInput";
+import EventNameInput from "../EventNameInput";
+import ExerciseDropdown from "../ExerciseDropdown";
+import IntensityDropdown from "../IntensityDropdown";
+import LocationMapPicker from "../LocationMapPicker";
+import DateTimePicker from "../DateTimePicker";
+import { DateTime } from "luxon";
+import { Link } from "react-router-dom";
 
 const initialEvent = {
-  name: '',
-  description: '',
-  exerciseType: '',
+  name: "",
+  description: "",
+  exerciseType: "",
   longitude: -1.8845,
   latitude: 52.4754,
   time: DateTime.now().toString().slice(0, -10),
-  intensity: '',
+  intensity: "",
   groupId: 2,
 };
 
 function reducer(event, action) {
   switch (action.type) {
-    case 'SET_EXERCISE':
+    case "SET_EXERCISE":
       return { ...event, exerciseType: action.payload };
-    case 'SET_DATE_AND_TIME':
+    case "SET_DATE_AND_TIME":
       return { ...event, time: action.payload };
-    case 'SET_LOCATION':
+    case "SET_LOCATION":
       return {
         ...event,
         longitude: action.payload.lng,
         latitude: action.payload.lat,
       };
-    case 'SET_INTENSITY':
+    case "SET_INTENSITY":
       return {
         ...event,
         intensity: action.payload,
       };
-    case 'SET_EVENT_NAME':
+    case "SET_EVENT_NAME":
       return {
         ...event,
         name: action.payload,
       };
-    case 'SET_EVENT_DESCRIPTION':
+    case "SET_EVENT_DESCRIPTION":
       return {
         ...event,
         description: action.payload,
       };
-    case 'SET_GROUP_ID':
+    case "SET_GROUP_ID":
       return {
         ...event,
         groupId: action.payload,
       };
-    case 'RESET':
+    case "RESET":
       return initialEvent;
     default:
       return event;
@@ -84,7 +84,7 @@ function CreateEvent() {
 
   function handlePost() {
     // @ts-ignore
-    dispatch({ type: 'SET_GROUP_ID', payload: dbUser?.partOfGroupId });
+    dispatch({ type: "SET_GROUP_ID", payload: dbUser?.partOfGroupId });
     setToPost(true);
   }
 
@@ -108,7 +108,7 @@ function CreateEvent() {
         placeSelf="center"
         rounded="md"
         border="0.3px solid lightgrey"
-        minW={['300px', '445px']}
+        minW={["300px", "445px"]}
         maxW="445"
         w="full"
         placeItems="center"
@@ -134,10 +134,11 @@ function CreateEvent() {
         </GridItem>
 
         <Button
+          textColor="black"
           w="full"
+          colorScheme="boostyellow"
           isLoading={toPost}
           my={5}
-          bg="#facd60"
           onClick={() => {
             handlePost();
           }}
@@ -157,7 +158,7 @@ function CreateEvent() {
 
           <ModalFooter>
             <Link to="/GroupFeed">
-              <Button colorScheme="blue" mr={3} fontSize={[12, 16]}>
+              <Button colorScheme="boostblue" mr={3} fontSize={[12, 16]}>
                 Go to Feed Page
               </Button>
             </Link>
@@ -166,11 +167,11 @@ function CreateEvent() {
               variant="ghost"
               onClick={() => {
                 // @ts-ignore
-                dispatch({ type: 'RESET' });
+                dispatch({ type: "RESET" });
                 onClose();
                 window.scrollTo({
                   top: 0,
-                  behavior: 'smooth',
+                  behavior: "smooth",
                 });
               }}
             >

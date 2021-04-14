@@ -20,7 +20,8 @@ function NavBar() {
       ]}
       w={['100%', '100%', '100%', '10%']}
       h={['max-content', 'max-content', 'max-content', '100vh']}
-      bg="#1AC0C6"
+      bg="boostblue.500"
+      boxShadow="0 0 4px lightgrey"
     >
       <NavLink to="/">
         <Box display={[null, 'none', 'none', 'none']}>

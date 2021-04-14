@@ -7,7 +7,7 @@ function LogoutButton({ ...props }) {
   return (
     <Button
       data-testid="logoutButton"
-      bg="#1AC0C6"
+      colorScheme="boostyellow"
       size="md"
       textColor="black"
       onClick={() => logout({ returnTo: window.location.origin })}
