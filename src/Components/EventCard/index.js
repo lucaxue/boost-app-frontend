@@ -5,18 +5,18 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Button,
   GridItem,
   Heading,
   HStack,
   Text,
   WrapItem,
-} from '@chakra-ui/react';
-import Card from 'Components/Card';
-import GenericButton from 'Components/GenericButton';
-import { useUserContext } from 'Libs/userContext';
-import { DateTime } from 'luxon';
-import React, { useEffect, useState } from 'react';
-import { getAddress, updateUser } from '../../Libs/httpRequests';
+} from "@chakra-ui/react";
+import Card from "Components/Card";
+import { useUserContext } from "Libs/userContext";
+import { DateTime } from "luxon";
+import React, { useEffect, useState } from "react";
+import { getAddress, updateUser } from "../../Libs/httpRequests";
 
 function EventCard({
   name,
@@ -74,7 +74,7 @@ function EventCard({
   }, []);
 
   return (
-    <Card stripColor={willAttend ? '#facd60' : 'gray.100'} p={6}>
+    <Card stripColor={willAttend ? "#facd60" : "gray.100"} p={6}>
       <HStack>
         <Heading fontSize="2xl">{shortDate}</Heading>
 
@@ -112,7 +112,7 @@ function EventCard({
                     fontSize="md"
                     color="gray.400"
                   >
-                    <span className="material-icons">moving</span>{' '}
+                    <span className="material-icons">moving</span>{" "}
                     {intensity.toUpperCase()}
                   </Text>
                 </WrapItem>
@@ -124,7 +124,7 @@ function EventCard({
                     color="gray.400"
                   >
                     <span className="material-icons">fitness_center</span>
-                    {' ' + exerciseType.toUpperCase()}
+                    {" " + exerciseType.toUpperCase()}
                   </Text>
                 </WrapItem>
 
@@ -134,16 +134,17 @@ function EventCard({
                   fontSize="md"
                   color="gray.400"
                 >
-                  <span className="material-icons">place</span> {address.road},{' '}
+                  <span className="material-icons">place</span> {address.road},{" "}
                   {address.city}, {address.postcode}
                 </Text>
                 <Box textAlign="right">
-                  <GenericButton
-                    data-testid="attending button"
-                    text="Attend"
-                    handleClick={attendEvent}
-                    display={willAttend ? 'none' : null}
-                  />
+                  <Button
+                    colorScheme="boostblue"
+                    onClick={attendEvent}
+                    display={willAttend ? "none" : null}
+                  >
+                    Attend
+                  </Button>
                 </Box>
               </AccordionPanel>
             </AccordionItem>

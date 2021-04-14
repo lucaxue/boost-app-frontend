@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import {
   Button,
@@ -6,16 +6,16 @@ import {
   FormHelperText,
   FormLabel,
   Grid,
-} from '@chakra-ui/react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+} from "@chakra-ui/react";
+import { MapContainer, TileLayer } from "react-leaflet";
 
-import DraggableMarker from '../DraggableMarker';
+import DraggableMarker from "../DraggableMarker";
 
 function LocationMapPicker({ dispatch, location }) {
   const [position, setPosition] = useState(location);
 
   const setLocation = () => {
-    dispatch({ type: 'SET_LOCATION', payload: position });
+    dispatch({ type: "SET_LOCATION", payload: position });
   };
 
   return (
@@ -28,7 +28,7 @@ function LocationMapPicker({ dispatch, location }) {
         p={3}
         placeItems="center"
         _hover={{
-          borderColor: 'gray.300',
+          borderColor: "gray.300",
         }}
         transition="0.2s"
       >
@@ -43,7 +43,12 @@ function LocationMapPicker({ dispatch, location }) {
           />
           <DraggableMarker position={position} setPosition={setPosition} />
         </MapContainer>
-        <Button mt={3} bg="#facd60" onClick={setLocation}>
+        <Button
+          mt={3}
+          textColor="black"
+          colorScheme="boostyellow"
+          onClick={setLocation}
+        >
           Set Location
         </Button>
       </Grid>
