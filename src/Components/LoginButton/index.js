@@ -10,7 +10,7 @@ function LoginButton({ ...props }) {
       data-testid="loginButton"
       colorScheme="boostblue"
       size="lg"
-      textColor="#fff"
+      textColor="white"
       onClick={() => loginWithRedirect()}
       {...props}
     >

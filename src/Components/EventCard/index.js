@@ -11,12 +11,12 @@ import {
   HStack,
   Text,
   WrapItem,
-} from "@chakra-ui/react";
-import Card from "Components/Card";
-import { useUserContext } from "Libs/userContext";
-import { DateTime } from "luxon";
-import React, { useEffect, useState } from "react";
-import { getAddress, updateUser } from "../../Libs/httpRequests";
+} from '@chakra-ui/react';
+import Card from 'Components/Card';
+import { useUserContext } from 'Libs/userContext';
+import { DateTime } from 'luxon';
+import React, { useEffect, useState } from 'react';
+import { getAddress, updateUser } from '../../Libs/httpRequests';
 
 function EventCard({
   name,
@@ -74,7 +74,7 @@ function EventCard({
   }, []);
 
   return (
-    <Card stripColor={willAttend ? "#facd60" : "gray.100"} p={6}>
+    <Card stripColor={willAttend ? 'boostyellow.300' : 'gray.100'} p={6}>
       <HStack>
         <Heading fontSize="2xl">{shortDate}</Heading>
 
@@ -92,11 +92,11 @@ function EventCard({
 
               <AccordionPanel textAlign="left" pb={4}>
                 <HStack>
-                  <Heading size="xs" color="#1ac0c6">
+                  <Heading size="xs" color="boostblue.500">
                     DATE
                   </Heading>
                   <Text>{date}</Text>
-                  <Heading size="xs" color="#1ac0c6">
+                  <Heading size="xs" color="boostblue.500">
                     AT
                   </Heading>
                   <Text>{time}</Text>
@@ -112,7 +112,7 @@ function EventCard({
                     fontSize="md"
                     color="gray.400"
                   >
-                    <span className="material-icons">moving</span>{" "}
+                    <span className="material-icons">moving</span>{' '}
                     {intensity.toUpperCase()}
                   </Text>
                 </WrapItem>
@@ -124,7 +124,7 @@ function EventCard({
                     color="gray.400"
                   >
                     <span className="material-icons">fitness_center</span>
-                    {" " + exerciseType.toUpperCase()}
+                    {' ' + exerciseType.toUpperCase()}
                   </Text>
                 </WrapItem>
 
@@ -134,14 +134,14 @@ function EventCard({
                   fontSize="md"
                   color="gray.400"
                 >
-                  <span className="material-icons">place</span> {address.road},{" "}
+                  <span className="material-icons">place</span> {address.road},{' '}
                   {address.city}, {address.postcode}
                 </Text>
                 <Box textAlign="right">
                   <Button
                     colorScheme="boostblue"
                     onClick={attendEvent}
-                    display={willAttend ? "none" : null}
+                    display={willAttend ? 'none' : null}
                   >
                     Attend
                   </Button>
