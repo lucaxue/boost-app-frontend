@@ -11,7 +11,7 @@ import DraggableMarker from '../DraggableMarker';
 import { SET_LOCATION } from 'Reducers/eventToPost/eventToPost.actions';
 
 function LocationMapPicker({ dispatch, location }) {
-  const [position, setPosition] = useState(location);
+  const [position, setPosition] = useState({ lat: 52.4754, lng: -1.8845 });
 
   const setLocation = () => {
     dispatch({ type: SET_LOCATION, payload: position });
@@ -42,7 +42,7 @@ function LocationMapPicker({ dispatch, location }) {
           Press the map to find your location, drag the pin to choose your
           location.
         </FormHelperText>
-        <MapContainer center={location} zoom={13} scrollWheelZoom={false}>
+        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
