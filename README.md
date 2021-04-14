@@ -4,7 +4,7 @@
 <br/>
 ## An Exercise Focused Event Making App
 
-<em>Checkout the source code for the backend API [here](https://github.com/lucaxue/boost-app-backend).</em>
+<em>Checkout the source code for the backend API [here](https://github.com/SchoolOfCode/project-back-end-we-don-t-byte).</em>
 
 - Made with React
 - Authentication with Auth0
