@@ -1,9 +1,10 @@
 import React from 'react';
 import { FormControl, FormLabel, Select } from '@chakra-ui/react';
+import { SET_EXERCISE } from 'Reducers/eventToPost/eventToPost.actions';
 
 function ExerciseDropdown({ dispatch, exerciseType }) {
   const setExercise = (e) => {
-    dispatch({ type: 'SET_EXERCISE', payload: e.target.value });
+    dispatch({ type: SET_EXERCISE, payload: e.target.value });
   };
 
   return (

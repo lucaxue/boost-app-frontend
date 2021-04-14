@@ -1,17 +1,22 @@
+import { useAuth0 } from '@auth0/auth0-react';
+import { DateTime } from 'luxon';
 import React, {
-  useReducer,
   createContext,
   useContext,
   useEffect,
+  useReducer,
   useState,
 } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import * as actionTypes from 'Reducers/userToDisplay/userToDisplay.actions';
+import {
+  initialUserToDisplay,
+  reducer,
+} from 'Reducers/userToDisplay/userToDisplay.reducer';
 import {
   getGroupById,
   getManyEventsByIds,
   getUserByUsername,
 } from './httpRequests';
-import { DateTime } from 'luxon';
 
 const UserContext = createContext({
   userToDisplay: null,
@@ -20,45 +25,6 @@ const UserContext = createContext({
   nextEvent: null,
   dbUser: null,
 });
-
-const initialUserToDisplay = {
-  id: null,
-  firstName: '',
-  surname: '',
-  picture: '',
-  username: '',
-  group: '',
-  hours: 0,
-  isAdmin: false,
-  isReady: 'loading',
-};
-
-function reducer(userToDisplay, action) {
-  switch (action.type) {
-    case 'SET_ID':
-      return { ...userToDisplay, id: action.payload };
-    case 'SET_FIRST_NAME':
-      return { ...userToDisplay, firstName: action.payload };
-    case 'SET_SURNAME':
-      return { ...userToDisplay, surname: action.payload };
-    case 'SET_PICTURE':
-      return { ...userToDisplay, picture: action.payload };
-    case 'SET_USERNAME':
-      return { ...userToDisplay, username: action.payload };
-    case 'SET_GROUP':
-      return { ...userToDisplay, group: action.payload };
-    case 'SET_HOURS':
-      return { ...userToDisplay, hours: action.payload };
-    case 'SET_IS_ADMIN':
-      return { ...userToDisplay, isAdmin: action.payload };
-    case 'SET_IS_READY':
-      return { ...userToDisplay, isReady: action.payload };
-    case 'RESET':
-      return initialUserToDisplay;
-    default:
-      return userToDisplay;
-  }
-}
 
 export function UserContextProvider({ children }) {
   const { user: auth0User, isAuthenticated } = useAuth0();
@@ -80,7 +46,7 @@ export function UserContextProvider({ children }) {
   //fetch dbUser
   useEffect(() => {
     // @ts-ignore
-    dispatch({ type: 'SET_USERNAME', payload: auth0User?.nickname });
+    dispatch({ type: actionTypes.SET_USERNAME, payload: auth0User?.nickname });
     getUserByUsername(
       process.env.REACT_APP_BACKEND_URL,
       auth0User?.nickname,
@@ -89,7 +55,7 @@ export function UserContextProvider({ children }) {
       },
       () => {
         // @ts-ignore
-        dispatch({ type: 'SET_IS_READY', payload: 'new user' });
+        dispatch({ type: actionTypes.SET_IS_READY, payload: 'new user' });
       }
     );
     // eslint-disable-next-line
@@ -100,32 +66,32 @@ export function UserContextProvider({ children }) {
   useEffect(() => {
     if (dbUser.id !== 0) {
       // @ts-ignore
-      dispatch({ type: 'SET_FIRST_NAME', payload: dbUser.firstName });
+      dispatch({ type: actionTypes.SET_FIRST_NAME, payload: dbUser.firstName });
       // @ts-ignore
-      dispatch({ type: 'SET_SURNAME', payload: dbUser.surname });
+      dispatch({ type: actionTypes.SET_SURNAME, payload: dbUser.surname });
       // @ts-ignore
       dispatch({
-        type: 'SET_ID',
+        type: actionTypes.SET_ID,
         payload: dbUser.id,
       });
       // @ts-ignore
       dispatch({
-        type: 'SET_IS_ADMIN',
+        type: actionTypes.SET_IS_ADMIN,
         payload: dbUser.partOfGroupId === dbUser.adminOfGroupId,
       });
       // @ts-ignore
-      dispatch({ type: 'SET_PICTURE', payload: auth0User?.picture });
+      dispatch({ type: actionTypes.SET_PICTURE, payload: auth0User?.picture });
       // @ts-ignore
-      dispatch({ type: 'SET_HOURS', payload: dbUser.hours });
+      dispatch({ type: actionTypes.SET_HOURS, payload: dbUser.hours });
       // @ts-ignore
-      dispatch({ type: 'SET_IS_READY', payload: 'ready' });
+      dispatch({ type: actionTypes.SET_IS_READY, payload: 'ready' });
 
       getGroupById(
         process.env.REACT_APP_BACKEND_URL,
         dbUser.partOfGroupId,
         (group) => {
           // @ts-ignore
-          dispatch({ type: 'SET_GROUP', payload: group.name });
+          dispatch({ type: actionTypes.SET_GROUP, payload: group.name });
         }
       );
 

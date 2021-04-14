@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { getGroupByName, postGroup } from "Libs/httpRequests";
 import React, { useEffect, useState } from "react";
-import { actionTypes } from "../../Libs/Reducer/userToPostActionTypes";
+import * as actionTypes from 'Reducers/userToPost/userToPost.actions';
 
 function GroupForm({ setToPost, dispatch }) {
   const [groupName, setGroupName] = useState("");

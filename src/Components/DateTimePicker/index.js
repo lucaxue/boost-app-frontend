@@ -3,11 +3,12 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './datepicker.css';
 import { FormControl, FormLabel } from '@chakra-ui/react';
+import { SET_DATE_AND_TIME } from 'Reducers/eventToPost/eventToPost.actions';
 
 function DateTimePicker({ dispatch, datetime }) {
   function setDateAndTime(date) {
     dispatch({
-      type: 'SET_DATE_AND_TIME',
+      type: SET_DATE_AND_TIME,
       payload:
         date.toISOString().slice(0, -13) + date.toTimeString().slice(0, 8),
     });

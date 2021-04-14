@@ -1,15 +1,15 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { Heading } from '@chakra-ui/react';
 import { postUser } from 'Libs/httpRequests';
-import { useUserContext } from '../../Libs/userContext';
+import { useUserContext } from 'Libs/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import NameInputForm from 'Components/NameInputForm';
 import GroupForm from 'Components/GroupForm';
 import {
   initialUserToPost,
   reducer,
-} from '../../Libs/Reducer/userToPostReducer';
-import { actionTypes } from '../../Libs/Reducer/userToPostActionTypes';
+} from 'Reducers/userToPost/userToPost.reducer';
+import * as actionTypes from 'Reducers/userToPost/userToPost.actions';
 import Card from 'Components/Card';
 
 function NewUserForm() {
