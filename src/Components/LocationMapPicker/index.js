@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 import {
   Button,
@@ -6,17 +6,20 @@ import {
   FormHelperText,
   FormLabel,
   Grid,
-} from "@chakra-ui/react";
-import { MapContainer, TileLayer } from "react-leaflet";
+} from '@chakra-ui/react';
+import { MapContainer, TileLayer } from 'react-leaflet';
 
-import DraggableMarker from "../DraggableMarker";
+import DraggableMarker from '../DraggableMarker';
 
 function LocationMapPicker({ dispatch, location }) {
   const [position, setPosition] = useState(location);
 
   const setLocation = () => {
-    dispatch({ type: "SET_LOCATION", payload: position });
+    dispatch({ type: 'SET_LOCATION', payload: position });
   };
+
+  const locationIsSet =
+    location.lat === position.lat && location.lng === position.lng;
 
   return (
     <FormControl padding="5px 0">
@@ -27,10 +30,14 @@ function LocationMapPicker({ dispatch, location }) {
         rounded="lg"
         p={3}
         placeItems="center"
-        _hover={{
-          borderColor: "gray.300",
-        }}
         transition="0.2s"
+        _hover={{
+          borderColor: 'gray.300',
+        }}
+        _focusWithin={{
+          zIndex: '1',
+          borderColor: 'blue.400',
+        }}
       >
         <FormHelperText mb={3}>
           Press the map to find your location, drag the pin to choose your
@@ -44,12 +51,17 @@ function LocationMapPicker({ dispatch, location }) {
           <DraggableMarker position={position} setPosition={setPosition} />
         </MapContainer>
         <Button
+          w="140px"
           mt={3}
-          textColor="black"
-          colorScheme="boostyellow"
+          textColor={locationIsSet ? 'white' : 'black'}
+          colorScheme={locationIsSet ? 'boostblue' : 'boostyellow'}
           onClick={setLocation}
         >
-          Set Location
+          {locationIsSet ? (
+            <span className="material-icons-outlined">done</span>
+          ) : (
+            'Set Location'
+          )}
         </Button>
       </Grid>
     </FormControl>
