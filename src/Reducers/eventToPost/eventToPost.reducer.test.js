@@ -8,11 +8,11 @@ describe('SET_EXERCISE action type:', () => {
       name: '',
       description: '',
       exerciseType: 'Running',
-      longitude: -1.8845,
-      latitude: 52.4754,
+      longitude: 0,
+      latitude: 0,
       time: DateTime.now().toString().slice(0, -10),
       intensity: '',
-      groupId: 2,
+      groupId: 0,
     };
 
     const actual = reducer(initialEventToPost, {

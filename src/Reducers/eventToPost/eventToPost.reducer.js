@@ -5,11 +5,11 @@ export const initialEventToPost = {
   name: '',
   description: '',
   exerciseType: '',
-  longitude: -1.8845,
-  latitude: 52.4754,
+  longitude: 0,
+  latitude: 0,
   time: DateTime.now().toString().slice(0, -10),
   intensity: '',
-  groupId: 2,
+  groupId: 0,
 };
 
 export function reducer(eventToPost, action) {
