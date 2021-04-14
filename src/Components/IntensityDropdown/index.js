@@ -1,9 +1,10 @@
 import React from 'react';
 import { FormControl, FormLabel, Select } from '@chakra-ui/react';
+import { SET_INTENSITY } from 'Reducers/eventToPost/eventToPost.actions';
 
 function IntensityDropdown({ dispatch, intensity }) {
   const setIntensity = (e) => {
-    dispatch({ type: 'SET_INTENSITY', payload: e.target.value });
+    dispatch({ type: SET_INTENSITY, payload: e.target.value });
   };
 
   return (

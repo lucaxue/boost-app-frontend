@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import {
   Button,
   FormControl,
@@ -8,14 +7,14 @@ import {
   Grid,
 } from '@chakra-ui/react';
 import { MapContainer, TileLayer } from 'react-leaflet';
-
 import DraggableMarker from '../DraggableMarker';
+import { SET_LOCATION } from 'Reducers/eventToPost/eventToPost.actions';
 
 function LocationMapPicker({ dispatch, location }) {
   const [position, setPosition] = useState(location);
 
   const setLocation = () => {
-    dispatch({ type: 'SET_LOCATION', payload: position });
+    dispatch({ type: SET_LOCATION, payload: position });
   };
 
   return (

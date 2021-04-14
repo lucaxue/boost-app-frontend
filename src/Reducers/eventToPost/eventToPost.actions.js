@@ -1,0 +1,8 @@
+export const SET_EXERCISE = 'SET_EXERCISE';
+export const SET_DATE_AND_TIME = 'SET_DATE_AND_TIME';
+export const SET_LOCATION = 'SET_LOCATION';
+export const SET_INTENSITY = 'SET_INTENSITY';
+export const SET_EVENT_NAME = 'SET_EVENT_NAME';
+export const SET_EVENT_DESCRIPTION = 'SET_EVENT_DESCRIPTION';
+export const SET_GROUP_ID = 'SET_GROUP_ID';
+export const RESET = 'RESET';

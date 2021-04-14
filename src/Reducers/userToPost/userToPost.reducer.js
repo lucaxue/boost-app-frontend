@@ -1,14 +1,15 @@
-import { actionTypes } from "./userToPostActionTypes";
+import * as actionTypes from './userToPost.actions';
 
 export const initialUserToPost = {
-  firstName: "",
-  surname: "",
-  username: "",
+  firstName: '',
+  surname: '',
+  username: '',
   hours: 0,
   partOfGroupId: null,
   adminOfGroupId: null,
   eventsIds: [],
 };
+
 export function reducer(userToPost, action) {
   switch (action.type) {
     case actionTypes.SET_FIRST_NAME:
