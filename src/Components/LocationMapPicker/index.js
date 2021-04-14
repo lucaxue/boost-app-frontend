@@ -17,6 +17,9 @@ function LocationMapPicker({ dispatch, location }) {
     dispatch({ type: SET_LOCATION, payload: position });
   };
 
+  const locationIsSet =
+    location.lat === position.lat && location.lng === position.lng;
+
   return (
     <FormControl padding="5px 0">
       <FormLabel>Pick your location</FormLabel>
@@ -26,10 +29,14 @@ function LocationMapPicker({ dispatch, location }) {
         rounded="lg"
         p={3}
         placeItems="center"
+        transition="0.2s"
         _hover={{
           borderColor: 'gray.300',
         }}
-        transition="0.2s"
+        _focusWithin={{
+          zIndex: '1',
+          borderColor: 'blue.400',
+        }}
       >
         <FormHelperText mb={3}>
           Press the map to find your location, drag the pin to choose your
@@ -42,8 +49,18 @@ function LocationMapPicker({ dispatch, location }) {
           />
           <DraggableMarker position={position} setPosition={setPosition} />
         </MapContainer>
-        <Button mt={3} bg="#facd60" onClick={setLocation}>
-          Set Location
+        <Button
+          w="140px"
+          mt={3}
+          textColor={locationIsSet ? 'white' : 'black'}
+          colorScheme={locationIsSet ? 'boostblue' : 'boostyellow'}
+          onClick={setLocation}
+        >
+          {locationIsSet ? (
+            <span className="material-icons-outlined">done</span>
+          ) : (
+            'Set Location'
+          )}
         </Button>
       </Grid>
     </FormControl>

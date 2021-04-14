@@ -3,16 +3,16 @@ import {
   FormLabel,
   GridItem,
   Input,
-  HStack,
-} from '@chakra-ui/react';
-import GenericButton from 'Components/GenericButton';
-import { getGroupByName, postGroup } from 'Libs/httpRequests';
-import React, { useEffect, useState } from 'react';
+  Button,
+  Grid,
+} from "@chakra-ui/react";
+import { getGroupByName, postGroup } from "Libs/httpRequests";
+import React, { useEffect, useState } from "react";
 import * as actionTypes from 'Reducers/userToPost/userToPost.actions';
 
 function GroupForm({ setToPost, dispatch }) {
-  const [groupName, setGroupName] = useState('');
-  const [groupExists, setGroupExists] = useState('undetermined');
+  const [groupName, setGroupName] = useState("");
+  const [groupExists, setGroupExists] = useState("undetermined");
   const [toCreateGroup, setToCreateGroup] = useState(false);
 
   function handleGroupCheck() {
@@ -25,11 +25,11 @@ function GroupForm({ setToPost, dispatch }) {
             type: actionTypes.SET_PART_OF_GROUP_ID,
             payload: group.id,
           });
-          setGroupExists('true');
+          setGroupExists("true");
         }
       },
       () => {
-        setGroupExists('false');
+        setGroupExists("false");
       }
     );
   }
@@ -57,10 +57,10 @@ function GroupForm({ setToPost, dispatch }) {
 
   return (
     <>
-      {groupExists === 'undetermined' && (
+      {groupExists === "undetermined" && (
         <>
-          <GridItem padding="50px 0">
-            <FormControl padding="5px 0" isRequired>
+          <GridItem py={10}>
+            <FormControl py={5} isRequired>
               <FormLabel>
                 Please enter group name to create or join a group
               </FormLabel>
@@ -72,53 +72,68 @@ function GroupForm({ setToPost, dispatch }) {
               />
             </FormControl>
           </GridItem>
-          <GenericButton text="Submit" handleClick={handleGroupCheck} />
+          <Button w="full" colorScheme="boostblue" onClick={handleGroupCheck}>
+            Submit
+          </Button>
         </>
       )}
-      {groupExists === 'true' && (
-        <GridItem padding="50px 0">
-          <FormControl padding="5px 0" isRequired>
+      {groupExists === "true" && (
+        <GridItem py={10}>
+          <FormControl py={5} isRequired>
             <FormLabel>
               {groupName} is an existing group, would you like to join it?
             </FormLabel>
-            <HStack>
-              <GenericButton
-                text="Yes"
-                handleClick={() => {
+            <Grid mt={5} placeItems="center" w="full" templateColumns="4fr 4fr">
+              <Button
+                w="80%"
+                colorScheme="boostblue"
+                onClick={() => {
                   setToPost(true);
                 }}
-              />
-              <GenericButton
-                text="No"
-                handleClick={() => {
-                  setGroupExists('undetermined');
+              >
+                Yes
+              </Button>
+              <Button
+                w="80%"
+                right="0"
+                colorScheme="boostblue"
+                onClick={() => {
+                  setGroupExists("undetermined");
                 }}
-              />
-            </HStack>
+              >
+                No
+              </Button>
+            </Grid>
           </FormControl>
         </GridItem>
       )}
-      {groupExists === 'false' && (
-        <GridItem padding="50px 0">
-          <FormControl padding="5px 0" isRequired>
+      {groupExists === "false" && (
+        <GridItem py={10}>
+          <FormControl py={5} isRequired>
             <FormLabel>
               Group {groupName} does not exist would you like to create this
               group?
             </FormLabel>
-            <HStack>
-              <GenericButton
-                text="Yes"
-                handleClick={() => {
+            <Grid mt={5} placeItems="center" w="full" templateColumns="4fr 4fr">
+              <Button
+                w="80%"
+                colorScheme="boostblue"
+                onClick={() => {
                   setToCreateGroup(true);
                 }}
-              />
-              <GenericButton
-                text="No"
-                handleClick={() => {
-                  setGroupExists('undetermined');
+              >
+                Yes
+              </Button>
+              <Button
+                w="80%"
+                colorScheme="boostblue"
+                onClick={() => {
+                  setGroupExists("undetermined");
                 }}
-              />
-            </HStack>
+              >
+                No
+              </Button>
+            </Grid>
           </FormControl>
         </GridItem>
       )}

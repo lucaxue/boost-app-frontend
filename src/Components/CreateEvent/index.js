@@ -69,7 +69,7 @@ function CreateEvent() {
         placeSelf="center"
         rounded="md"
         border="0.3px solid lightgrey"
-        minW={['300px', '445px']}
+        minW={["300px", "445px"]}
         maxW="445"
         w="full"
         placeItems="center"
@@ -98,10 +98,11 @@ function CreateEvent() {
         </GridItem>
 
         <Button
+          textColor="black"
           w="full"
+          colorScheme="boostyellow"
           isLoading={toPost}
           my={5}
-          bg="#facd60"
           onClick={() => {
             handlePost();
           }}
@@ -121,7 +122,7 @@ function CreateEvent() {
 
           <ModalFooter>
             <Link to="/GroupFeed">
-              <Button colorScheme="blue" mr={3} fontSize={[12, 16]}>
+              <Button colorScheme="boostblue" mr={3} fontSize={[12, 16]}>
                 Go to Feed Page
               </Button>
             </Link>
@@ -134,7 +135,7 @@ function CreateEvent() {
                 onClose();
                 window.scrollTo({
                   top: 0,
-                  behavior: 'smooth',
+                  behavior: "smooth",
                 });
               }}
             >

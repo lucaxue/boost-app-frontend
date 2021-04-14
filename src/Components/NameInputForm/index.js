@@ -1,6 +1,11 @@
-import { FormControl, FormLabel, GridItem, Input } from '@chakra-ui/react';
-import GenericButton from 'Components/GenericButton';
-import React from 'react';
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  GridItem,
+  Input,
+} from "@chakra-ui/react";
+import React from "react";
 
 function NameInputForm({ handleFirstName, handleSurname, submitName }) {
   return (
@@ -15,7 +20,9 @@ function NameInputForm({ handleFirstName, handleSurname, submitName }) {
           <Input placeholder="Surname" onChange={handleSurname} />
         </FormControl>
       </GridItem>
-      <GenericButton text="Submit" handleClick={submitName} />
+      <Button w="full" colorScheme="boostblue" onClick={submitName}>
+        Submit
+      </Button>
     </>
   );
 }
