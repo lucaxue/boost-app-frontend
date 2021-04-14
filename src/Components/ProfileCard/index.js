@@ -80,7 +80,7 @@ function ProfileCard({
         </Grid> */}
 
       <Box p={10} textAlign="right">
-        <LogoutButton size="sm" bg="#facd60" />
+        <LogoutButton size="sm" />
       </Box>
     </Card>
   );

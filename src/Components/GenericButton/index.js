@@ -1,11 +1,11 @@
-import React from "react";
-import { Button } from "@chakra-ui/react";
+import React from 'react';
+import { Button } from '@chakra-ui/react';
 
 const GenericButton = ({ text, handleClick, ...props }) => {
   return (
     <Button
       data-testid="generic button"
-      bg="#1AC0C6"
+      colorScheme="boostblue"
       size="md"
       textColor="#fff"
       onClick={handleClick}

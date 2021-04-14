@@ -1,13 +1,14 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "@chakra-ui/react";
+import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Button } from '@chakra-ui/react';
 
 function LogoutButton({ ...props }) {
   const { logout } = useAuth0();
   return (
     <Button
       data-testid="logoutButton"
-      bg="#1AC0C6"
+      colorScheme="boostyellow"
+      // bg='boostyellow.300'
       size="md"
       textColor="black"
       onClick={() => logout({ returnTo: window.location.origin })}
