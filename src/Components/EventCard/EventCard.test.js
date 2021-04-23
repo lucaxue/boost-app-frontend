@@ -52,16 +52,6 @@ describe("When given an event", () => {
     //assert
     expect(actual).toHaveTextContent("EASY");
   });
-
-  // test("When given an event object with latitude and longitude render the address of the event in event card", () => {
-  //   //act
-  //   const { getByTestId } = render(<EventCard {...testEvent} />);
-  //   const actual = getByTestId("address");
-
-  //   //assert
-  //   expect(actual).toHaveTextContent("Eachelhurst Road, Birmingham, B24 0NR");
-  // });
-
   it("should have text content of Attend if attending is false", () => {
     //act
     const { getByTestId } = render(
